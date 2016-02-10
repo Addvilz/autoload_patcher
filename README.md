@@ -1,4 +1,4 @@
-# addvilz/autoload_patcher
+# Addvilz/autoload_patcher
 
 ## Purpose of this library
 
@@ -9,26 +9,30 @@ or extend it (static calls from other vendor code is a good example).
 
 This library allows you to replace, augment or otherwise change original source code and eval it afterwards.
 
+## Installation
+
+`composer require addvilz/autoload_patcher`
+
 ## Example use:
 
-```
-    $loader = require 'vendor/autoload.php';
-    $patcher = new \Addvilz\AutoloadPatcher\Patcher($loader);
-    $patcher
-        ->register()
-        ->addPatcher('Some\Vendor\UtilityClass', function ($code) {
+```php
+$loader = require 'vendor/autoload.php';
+$patcher = new \Addvilz\AutoloadPatcher\Patcher($loader);
+$patcher
+    ->register()
+    ->addPatcher('Some\Vendor\UtilityClass', function ($code) {
+    
+        // Let's rename the class
+        $code = str_replace(
+            'class UtilityClass',
+            'class VendorUtilityClass',
+            $code
+        );
         
-            // Let's rename the class
-            $code = str_replace(
-                'class UtilityClass',
-                'class VendorUtilityClass',
-                $code
-            );
-            
-            // ... More modification here, runtime code generation, etc.
-            
-            return $code;
-        });
+        // ... More modification here, runtime code generation, etc.
+        
+        return $code;
+    });
 ```
 
 ## How does it work?
