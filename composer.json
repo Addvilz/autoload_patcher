@@ -1,0 +1,19 @@
+{
+    "name": "addvilz/autoload_patcher",
+    "description": "Patch any class file before autoloading it",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Addvilz",
+            "email": "mrtreinis@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {},
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
+}
